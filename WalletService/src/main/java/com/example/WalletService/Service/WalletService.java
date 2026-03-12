@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -71,7 +72,10 @@ public class WalletService {
 
         return walletRepository.saveAndFlush(w);
     }
-
+    @Transactional(readOnly = true)
+    public List<Wallet> getAllWallets() {
+        return walletRepository.findAll();
+    }
     // Read-only fetch (no write)
     @Transactional(readOnly = true)
     public Wallet getWallet(Long walletId) {
