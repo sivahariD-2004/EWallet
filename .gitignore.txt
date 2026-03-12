@@ -1,0 +1,6 @@
+
+# H2 Database files
+*.mv.db
+*.mv
+*.h2.db
+*.db
