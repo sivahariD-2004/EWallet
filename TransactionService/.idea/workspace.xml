@@ -4,11 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="workspace" />
+    <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="workspace">
+      <change afterPath="$PROJECT_DIR$/../eureka-server/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TransactionService.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/Controller/TransactionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/Modules/Transaction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/Repository/TransactionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/Service/TransactionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/TransactionServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/status/WalletStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/test/java/com/example/TransactionService/TransactionServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ewalletdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../ewalletdb.mv.db" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -25,6 +58,13 @@
     &quot;accountId&quot;: &quot;c53c9444-f655-47c6-a708-ed158aefd919&quot;
   }
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -35,14 +75,19 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Transaction.executor&quot;: &quot;Run&quot;,
     &quot;Application.TransactionServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sivahari.d/IdeaProjects/Ewalletproject/TransactionService/TransactionService/src/main/java/com/example/TransactionService&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sivahari.d/IdeaProjects/Ewalletproject/TransactionService/TransactionService/src/main/java/com/example/TransactionService&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -50,9 +95,19 @@
       <recent name="C:\Users\sivahari.d\IdeaProjects\Ewalletproject\TransactionService\TransactionService\src\main\java\com\example\TransactionService" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\sivahari.d\IdeaProjects\Ewalletproject\TransactionService\TransactionService\target" />
       <recent name="C:\Users\sivahari.d\IdeaProjects\Ewalletproject\TransactionService\TransactionService" />
+      <recent name="C:\Users\sivahari.d\IdeaProjects\Ewalletproject\TransactionService\target" />
+      <recent name="C:\Users\sivahari.d\IdeaProjects\Ewalletproject\TransactionService\TransactionService\target" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Transaction" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.example.TransactionService.TransactionServiceApplication" />
+      <module name="TransactionService" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773306426934</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="workspace">
+      <option name="closed" value="true" />
+      <created>1773306795341</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773306795341</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
