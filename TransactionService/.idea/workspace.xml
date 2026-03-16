@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="workspace" />
+    <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="workspace">
+      <change afterPath="$PROJECT_DIR$/../eureka-server/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TransactionService/src/main/java/com/example/TransactionService/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ewalletdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../ewalletdb.mv.db" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,12 +25,12 @@
     &quot;assignee&quot;: &quot;sivahariD-2004&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/sivahariD-2004/UserService.git&quot;,
-    &quot;accountId&quot;: &quot;c53c9444-f655-47c6-a708-ed158aefd919&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/sivahariD-2004/EWallet.git",
+    "accountId": "8b54b7cb-7d48-46dd-b9fe-391b3ab82820"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -33,18 +39,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TransactionServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sivahari.d/IdeaProjects/Ewalletproject/TransactionService/TransactionService/src/main/java/com/example/TransactionService&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TransactionServiceApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/yuvanya.thangaraj/IdeaProjects/EWalletDB/TransactionService"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sivahari.d\IdeaProjects\Ewalletproject\TransactionService\TransactionService\src\main\java\com\example\TransactionService" />
