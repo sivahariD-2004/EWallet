@@ -1,8 +1,8 @@
 package com.example.TransactionService.Modules;
 
-
-
 import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="transactions")
@@ -16,44 +16,50 @@ public class Transaction {
 
     private Long receiverWalletId;
 
-    private Double amount;
+    private BigDecimal amount;
 
     private String status;
 
-    public Long getTransactionId() {
-        return transactionId;
+    private LocalDateTime dateTime;
+
+    public Transaction() {
+        this.dateTime = LocalDateTime.now();
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
+    public Long getTransactionId() {
+        return transactionId;
     }
 
     public Long getSenderWalletId() {
         return senderWalletId;
     }
 
-    public void setSenderWalletId(Long senderWalletId) {
-        this.senderWalletId = senderWalletId;
-    }
-
     public Long getReceiverWalletId() {
         return receiverWalletId;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setSenderWalletId(Long senderWalletId) {
+        this.senderWalletId = senderWalletId;
     }
 
     public void setReceiverWalletId(Long receiverWalletId) {
         this.receiverWalletId = receiverWalletId;
     }
 
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public void setStatus(String status) {
