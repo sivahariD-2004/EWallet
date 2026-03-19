@@ -44,6 +44,7 @@ public class WalletController {
 
     @GetMapping("/all")
     public ResponseEntity<List<WalletResponse>> getAll() {
+        System.out.println("🔥 /wallets/all HIT");
         List<Wallet> wallets = walletService.getAllWallets();
         List<WalletResponse> response = wallets.stream()
                 .map(WalletResponse::from)
