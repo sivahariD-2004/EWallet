@@ -78,6 +78,14 @@ public class WalletController {
         return ResponseEntity.ok(WalletResponse.from(wallet));
     }
 
+    @PostMapping("/add-money")
+    public Wallet addMoney(
+            @RequestParam Long walletId,
+            @RequestParam Long bankAccountId,
+            @RequestParam BigDecimal amount
+    ) {
+        return walletService.addMoney(walletId, bankAccountId, amount);
+    }
     // --- DTOs ---
 
     public record CreateWalletRequest(
