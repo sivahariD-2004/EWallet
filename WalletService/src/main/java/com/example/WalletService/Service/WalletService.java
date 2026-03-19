@@ -1,5 +1,6 @@
 package com.example.WalletService.Service;
 
+import com.example.WalletService.FeignClient.BankClient;
 import com.example.WalletService.Modules.Wallet;
 import com.example.WalletService.Repository.WalletRepository;
 import com.example.WalletService.status.WalletStatus;
@@ -16,11 +17,36 @@ public class WalletService {
 
     private final WalletRepository walletRepository;
 
-    public WalletService(WalletRepository walletRepository) {
+    private final BankClient bankClient;
+
+
+    public WalletService(WalletRepository walletRepository,BankClient bankClient) {
         this.walletRepository = walletRepository;
+        this.bankClient = bankClient;
     }
 
-    // Creates a new wallet and writes it to the DB immediately
+
+    @Transactional
+    public Wallet addMoney(Long walletId, Long bankAccountId, BigDecimal amount) {
+
+        validatePositive(amount);
+
+        Wallet wallet = walletRepository.findByIdForUpdate(walletId)
+                .orElseThrow(() -> new EntityNotFoundException("Wallet not found: " + walletId));
+
+        ensureActive(wallet);
+
+        //  Withdraw from Bank (remote call)
+        bankClient.withdraw(bankAccountId, amount);
+
+        //  Credit wallet only if bank withdrawal succeeds
+        wallet.increase(amount);
+
+        // persist wallet update
+        return walletRepository.saveAndFlush(wallet);
+    }
+
+        // Creates a new wallet and writes it to the DB immediately
     @Transactional
     public Wallet createWallet(Long userId) {
         if (userId == null) throw new IllegalArgumentException("userId must not be null");
