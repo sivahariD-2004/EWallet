@@ -1,7 +1,9 @@
 package com.example.UserService.Service;
 
+import com.example.UserService.dto.CreateWalletRequest;
 import com.example.UserService.Modules.User;
 import com.example.UserService.Repository.UserRepository;
+import com.example.UserService.Client.WalletClient;
 import com.example.UserService.exception.DuplicateEmailException;
 import com.example.UserService.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,20 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // ✅ injected
+    private final PasswordEncoder passwordEncoder; // ✅ injected
+    private final WalletClient walletClient;
+
+
+    public UserService(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            WalletClient walletClient
+    ) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.walletClient = walletClient;
+    }
+
 
     public User registerUser(User user) {
         // ✅ duplicate email check
@@ -25,6 +40,12 @@ public class UserService {
 
         // ✅ hash password before save
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User savedUser = userRepository.save(user);
+
+        walletClient.createWallet(
+                new CreateWalletRequest(savedUser.getUserId())
+        );
+
         return userRepository.save(user);
     }
 

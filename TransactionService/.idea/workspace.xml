@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="open feign for transaction">
+      <change afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/UserClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ewalletdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../ewalletdb.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,15 +148,7 @@
       <option name="project" value="LOCAL" />
       <updated>1773740491108</updated>
     </task>
-    <task id="LOCAL-00007" summary="open feign for transaction">
-      <option name="closed" value="true" />
-      <created>1773904423467</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1773904423467</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
