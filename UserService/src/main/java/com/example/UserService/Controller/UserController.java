@@ -3,7 +3,11 @@ package com.example.UserService.Controller;
 import com.example.UserService.Modules.User;
 import com.example.UserService.Service.UserService;
 import com.example.UserService.Security.JwtUtil;
+import com.example.UserService.dto.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,26 +21,34 @@ public class UserController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+    public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody RegisterRequest req) {
+        User user = new User();
+        user.setEmail(req.email());
+        user.setPassword(req.password()); // will be hashed in service
+        user.setPhone(req.phone());       // ✅ keep only existing fields
+
+        User saved = userService.registerUser(user);
+
+        // Update your response DTO accordingly (no name)
+        UserResponse resp = new UserResponse(saved.getUserId(), saved.getEmail(), saved.getPhone());
+        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User user){
-
-        User loggedUser = userService.loginUser(user.getEmail(), user.getPassword());
-
-        if(loggedUser != null){
-            return jwtUtil.generateToken(loggedUser.getEmail());
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest req) {
+        var loggedUser = userService.loginUser(req.email(), req.password());
+        if (loggedUser != null) {
+            String token = jwtUtil.generateToken(loggedUser.getEmail());
+            return ResponseEntity.ok(new TokenResponse(token));
         }
-
-        throw new RuntimeException("Invalid credentials");
+        // ✅ standardized 401 for bad credentials
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ErrorResponse("INVALID_CREDENTIALS", "Email or password is incorrect"));
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Long id) {
-
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return "User deleted successfully";
+        return ResponseEntity.noContent().build();
     }
 }
