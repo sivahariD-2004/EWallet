@@ -46,6 +46,12 @@ public class UserController {
                 .body(new ErrorResponse("INVALID_CREDENTIALS", "Email or password is incorrect"));
     }
 
+    @GetMapping("/email/{email}")
+    public UserResponse getUserByEmail(@PathVariable String email) {
+        User user = userService.getUserByEmail(email);
+        return new UserResponse(user.getUserId(), user.getEmail(), user.getPhone());
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);

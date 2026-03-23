@@ -1,13 +1,17 @@
 package com.example.WalletService.Controller;
 
+import com.example.WalletService.FeignClient.UserClient;
 import com.example.WalletService.Modules.Wallet;
 import com.example.WalletService.Service.WalletService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,67 +28,118 @@ public class WalletController {
 
     private final WalletService walletService;
 
+    @Autowired
+    private UserClient userClient; // ✅ ADD THIS
+
     public WalletController(WalletService walletService) {
         this.walletService = walletService;
     }
 
-    // Create a new wallet for a user
+    private Long getLoggedInUserId() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+
+        var user = userClient.getUserByEmail(email);
+        return user.getId();   // ✅ FIXED
+    }
+    // Create a new wallet (NO AUTH CHECK REQUIRED)
     @PostMapping("/create")
     public ResponseEntity<WalletResponse> create(@Valid @RequestBody CreateWalletRequest request) {
         Wallet wallet = walletService.createWallet(request.userId());
         return ResponseEntity.status(HttpStatus.CREATED).body(WalletResponse.from(wallet));
     }
 
-    // Get wallet by id
+    // ✅ Get wallet by id (SECURED)
     @GetMapping("/{walletId}")
     public ResponseEntity<WalletResponse> get(@PathVariable Long walletId) {
         Wallet wallet = walletService.getWallet(walletId);
+
+        Long loggedInUserId = getLoggedInUserId();
+
+        if (!wallet.getUserId().equals(loggedInUserId)) {
+            throw new RuntimeException("Forbidden: Access denied");
+        }
+
         return ResponseEntity.ok(WalletResponse.from(wallet));
     }
 
+    // ⚠️ Optional: secure this if needed
     @GetMapping("/all")
     public ResponseEntity<List<WalletResponse>> getAll() {
-        System.out.println("🔥 /wallets/all HIT");
         List<Wallet> wallets = walletService.getAllWallets();
+
         List<WalletResponse> response = wallets.stream()
                 .map(WalletResponse::from)
                 .toList();
 
         return ResponseEntity.ok(response);
     }
-    // Deposit to wallet
+
+    // ✅ Deposit (SECURED)
     @PostMapping("/{walletId}/deposit")
     public ResponseEntity<WalletResponse> deposit(
             @PathVariable Long walletId,
             @Valid @RequestBody AmountRequest request) {
 
-        Wallet wallet = walletService.deposit(walletId, request.amount());
+        Wallet wallet = walletService.getWallet(walletId);
+
+        Long loggedInUserId = getLoggedInUserId();
+
+
+
+        wallet = walletService.deposit(walletId, request.amount());
         return ResponseEntity.ok(WalletResponse.from(wallet));
     }
 
-    // Withdraw from wallet
+    // ✅ Withdraw (SECURED)
     @PostMapping("/{walletId}/withdraw")
     public ResponseEntity<WalletResponse> withdraw(
             @PathVariable Long walletId,
             @Valid @RequestBody AmountRequest request) {
 
-        Wallet wallet = walletService.withdraw(walletId, request.amount());
+        Wallet wallet = walletService.getWallet(walletId);
+
+        Long loggedInUserId = getLoggedInUserId();
+
+        if (!wallet.getUserId().equals(loggedInUserId)) {
+            throw new RuntimeException("Forbidden: Access denied");
+        }
+
+        wallet = walletService.withdraw(walletId, request.amount());
         return ResponseEntity.ok(WalletResponse.from(wallet));
     }
 
-    // Block wallet
+    // ✅ Block wallet (SECURED)
     @PostMapping("/{walletId}/block")
     public ResponseEntity<WalletResponse> block(@PathVariable Long walletId) {
-        Wallet wallet = walletService.blockWallet(walletId);
+
+        Wallet wallet = walletService.getWallet(walletId);
+
+        Long loggedInUserId = getLoggedInUserId();
+
+        if (!wallet.getUserId().equals(loggedInUserId)) {
+            throw new RuntimeException("Forbidden: Access denied");
+        }
+
+        wallet = walletService.blockWallet(walletId);
         return ResponseEntity.ok(WalletResponse.from(wallet));
     }
 
+    // ✅ Add money (SECURED)
     @PostMapping("/add-money")
     public Wallet addMoney(
             @RequestParam Long walletId,
             @RequestParam Long bankAccountId,
             @RequestParam BigDecimal amount
     ) {
+        Wallet wallet = walletService.getWallet(walletId);
+
+        Long loggedInUserId = getLoggedInUserId();
+
+        if (!wallet.getUserId().equals(loggedInUserId)) {
+            throw new RuntimeException("Forbidden: Access denied");
+        }
+
         return walletService.addMoney(walletId, bankAccountId, amount);
     }
     // --- DTOs ---
@@ -111,7 +166,7 @@ public class WalletController {
     ) {
         public static WalletResponse from(Wallet w) {
             return new WalletResponse(
-                    w.getWalletId(),            // <-- FIXED: use getWalletId()
+                    w.getWalletId(),
                     w.getUserId(),
                     w.getBalance(),
                     w.getStatus() != null ? w.getStatus().name() : null,
@@ -122,7 +177,7 @@ public class WalletController {
         }
     }
 
-    // --- Local Exception Mapping ---
+    // --- Exception Handling ---
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleNotFound(EntityNotFoundException ex) {
@@ -137,6 +192,11 @@ public class WalletController {
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Map<String, Object>> handleConflict(IllegalStateException ex) {
         return problem(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, Object>> handleForbidden(RuntimeException ex) {
+        return problem(HttpStatus.FORBIDDEN, ex.getMessage());
     }
 
     private ResponseEntity<Map<String, Object>> problem(HttpStatus status, String message) {

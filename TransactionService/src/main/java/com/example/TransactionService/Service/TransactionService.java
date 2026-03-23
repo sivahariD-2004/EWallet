@@ -1,9 +1,12 @@
 package com.example.TransactionService.Service;
 
+import com.example.TransactionService.Client.UserClient;
 import com.example.TransactionService.Modules.Transaction;
 import com.example.TransactionService.Repository.TransactionRepository;
 import com.example.TransactionService.Client.WalletClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -18,24 +21,41 @@ public class TransactionService {
     @Autowired
     private WalletClient walletClient;
 
+    @Autowired
+    private UserClient userClient;
+
     public Transaction transferMoney(Transaction transaction) {
 
         boolean amountWithdrawn = false;
 
         try {
 
-            // 1️⃣ Validation
+            // 1️⃣ Get logged-in user from JWT
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
 
-            if(transaction.getSenderWalletId().equals(transaction.getReceiverWalletId())){
+            // 2️⃣ Get userId from UserService
+            var user = userClient.getUserByEmail(email);
+            Long loggedInUserId = user.id;
+
+            // 3️⃣ Get sender wallet details
+            var senderWallet = walletClient.getWallet(transaction.getSenderWalletId());
+
+            // 4️⃣ Authorization check (VERY IMPORTANT)
+            if (!senderWallet.userId.equals(loggedInUserId)) {
+                throw new RuntimeException("Forbidden: You cannot access this wallet");
+            }
+
+            // 5️⃣ Basic validations
+            if (transaction.getSenderWalletId().equals(transaction.getReceiverWalletId())) {
                 throw new RuntimeException("Sender and Receiver wallet cannot be the same");
             }
 
-            if(transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0){
+            if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
                 throw new RuntimeException("Transfer amount must be greater than zero");
             }
 
-            // 2️⃣ Withdraw from sender wallet
-
+            // 6️⃣ Withdraw from sender
             walletClient.withdraw(
                     transaction.getSenderWalletId(),
                     new WalletClient.AmountRequest(transaction.getAmount())
@@ -43,8 +63,7 @@ public class TransactionService {
 
             amountWithdrawn = true;
 
-            // 3️⃣ Deposit to receiver wallet
-
+            // 7️⃣ Deposit to receiver
             walletClient.deposit(
                     transaction.getReceiverWalletId(),
                     new WalletClient.AmountRequest(transaction.getAmount())
@@ -54,23 +73,19 @@ public class TransactionService {
 
         } catch (Exception e) {
 
-            // 4️⃣ If receiver side fails → refund sender
-
-            if(amountWithdrawn){
-
-                try{
+            // 8️⃣ Compensation (Refund logic)
+            if (amountWithdrawn) {
+                try {
                     walletClient.deposit(
                             transaction.getSenderWalletId(),
                             new WalletClient.AmountRequest(transaction.getAmount())
                     );
-                }catch(Exception refundException){
+                } catch (Exception refundException) {
                     System.out.println("Refund failed: " + refundException.getMessage());
                 }
 
                 transaction.setStatus("FAILED - RECEIVER ERROR (REFUNDED)");
-            }
-            else{
-                // sender side failure
+            } else {
                 transaction.setStatus("FAILED - SENDER ERROR");
             }
         }
@@ -78,10 +93,9 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    // Transaction History
+    // 📜 Transaction History
 
-    public List<Transaction> getTransactionHistory(Long walletId){
-
+    public List<Transaction> getTransactionHistory(Long walletId) {
         return transactionRepository
                 .findBySenderWalletIdOrReceiverWalletId(walletId, walletId);
     }

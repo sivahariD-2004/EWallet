@@ -57,6 +57,13 @@ public class UserService {
         return null; // controller will map to 401
     }
 
+    public User getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        return user;
+    }
     public void deleteUser(Long userId) {
         if (!userRepository.existsById(userId)) {
             throw new UserNotFoundException("User not found: " + userId);

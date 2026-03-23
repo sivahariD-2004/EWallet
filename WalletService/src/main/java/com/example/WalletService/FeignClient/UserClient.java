@@ -1,31 +1,36 @@
 package com.example.WalletService.FeignClient;
 
+import com.example.WalletService.Config.FeignAuthConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "USER-SERVICE",
-        path = "/users"          // base path exposed by user-service (adjust)
+        path = "/users",
+        configuration = FeignAuthConfig.class   // ✅ IMPORTANT (token forwarding)
 )
 public interface UserClient {
 
+    // ❌ Old method (optional to keep)
     @GetMapping("/{userId}")
     UserResponse getUser(@PathVariable("userId") Long userId);
 
-    // Add other endpoints as needed (POST/PUT/etc.)
-    // @PostMapping("/...")
-    // ResponseType doSomething(@RequestBody RequestType payload);
+    // ✅ ADD THIS METHOD (VERY IMPORTANT)
+    @GetMapping("/email/{email}")
+    UserResponse getUserByEmail(@PathVariable("email") String email);
 
-    // DTOs can be inner classes or separate files
+    // DTO
     class UserResponse {
         private Long id;
         private String email;
         private String status;
-        // getters/setters
+
         public Long getId() { return id; }
         public void setId(Long id) { this.id = id; }
+
         public String getEmail() { return email; }
         public void setEmail(String email) { this.email = email; }
+
         public String getStatus() { return status; }
         public void setStatus(String status) { this.status = status; }
     }
