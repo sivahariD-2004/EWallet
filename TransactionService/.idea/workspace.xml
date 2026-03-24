@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="open feign for transaction">
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/config/FeignAuthConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APIGateway/src/main/java/com/example/APIGateway/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../APIGateway/src/main/java/com/example/APIGateway/ApiGatewayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APIGateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../APIGateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Client/WalletClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Client/WalletClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Modules/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Modules/Wallet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Repository/WalletRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Repository/WalletRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Service/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Service/WalletService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/WalletServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/WalletServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Service/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ewalletdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../ewalletdb.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
