@@ -15,7 +15,7 @@ public class Wallet {
     private Long walletId;
 
     @Column(nullable = false)
-    private Long userId; // FK reference (enforced at service/business layer)
+    private Long userId; // FK reference
 
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal balance = BigDecimal.ZERO;

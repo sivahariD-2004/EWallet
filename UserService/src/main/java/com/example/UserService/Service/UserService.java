@@ -69,5 +69,6 @@ public class UserService {
             throw new UserNotFoundException("User not found: " + userId);
         }
         userRepository.deleteById(userId);
+        walletClient.deleteWallet(userId);
     }
 }

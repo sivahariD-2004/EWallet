@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 @SpringBootApplication
-public class WalletServiceApplication {
+public class   WalletServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WalletServiceApplication.class, args);

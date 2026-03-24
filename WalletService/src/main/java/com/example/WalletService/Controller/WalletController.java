@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
@@ -142,6 +143,15 @@ public class WalletController {
 
         return walletService.addMoney(walletId, bankAccountId, amount);
     }
+
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @DeleteMapping("/{walletId}")
+    public ResponseEntity<Void> deleteWallet(@PathVariable Long walletId) {
+        walletService.deleteWalletPermanently(walletId);
+        return ResponseEntity.noContent().build();
+    }
+
     // --- DTOs ---
 
     public record CreateWalletRequest(

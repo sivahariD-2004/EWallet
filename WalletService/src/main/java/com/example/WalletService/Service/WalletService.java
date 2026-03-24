@@ -54,6 +54,18 @@ public class WalletService {
         return walletRepository.saveAndFlush(w);
     }
 
+    @Transactional
+    public void deleteWalletPermanently(Long userId) {
+        Wallet wallet = walletRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("user not found: " + userId));
+
+        if (wallet.getBalance().compareTo(BigDecimal.ZERO) > 0) {
+            throw new IllegalStateException("Cannot delete wallet with non-zero balance");
+        }
+
+        walletRepository.delete(wallet);
+    }
+
     // Deposits funds and persists the new balance
     @Transactional
     public Wallet deposit(Long walletId, BigDecimal amount) {
