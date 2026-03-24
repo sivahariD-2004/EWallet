@@ -4,6 +4,7 @@ import com.example.TransactionService.Client.UserClient;
 import com.example.TransactionService.Modules.Transaction;
 import com.example.TransactionService.Repository.TransactionRepository;
 import com.example.TransactionService.Client.WalletClient;
+import com.example.TransactionService.exception.ForbiddenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -96,6 +97,24 @@ public class TransactionService {
     // 📜 Transaction History
 
     public List<Transaction> getTransactionHistory(Long walletId) {
+
+        // 1️⃣ Get logged-in user from JWT
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+
+        // 2️⃣ Get userId from UserService
+        var user = userClient.getUserByEmail(email);
+        Long loggedInUserId = user.id;
+
+        // 3️⃣ Get wallet details
+        var wallet = walletClient.getWallet(walletId);
+
+        // 4️⃣ Authorization check
+        if (!wallet.userId.equals(loggedInUserId)) {
+            throw new ForbiddenException("You cannot view this wallet's transactions");
+        }
+
+        // 5️⃣ Fetch transactions
         return transactionRepository
                 .findBySenderWalletIdOrReceiverWalletId(walletId, walletId);
     }
