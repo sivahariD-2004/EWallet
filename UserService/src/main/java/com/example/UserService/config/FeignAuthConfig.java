@@ -1,4 +1,4 @@
-package com.example.UserService.config;
+package com.example.UserService.Config;
 
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;

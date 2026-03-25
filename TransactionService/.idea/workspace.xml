@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="open feign for transaction">
-      <change beforePath="$PROJECT_DIR$/../APIGateway/src/main/java/com/example/APIGateway/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../APIGateway/src/main/java/com/example/APIGateway/ApiGatewayApplication.java" afterDir="false" />
+    <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="TRANSACTION HISTORY AUTHORIZATION">
       <change beforePath="$PROJECT_DIR$/../APIGateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../APIGateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Service/TransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eureka-server/eureka-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka-server/eureka-server/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ewalletdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../ewalletdb.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773740491108</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="TRANSACTION HISTORY AUTHORIZATION">
+      <option name="closed" value="true" />
+      <created>1774345306396</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1774345306396</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +176,7 @@
     <MESSAGE value="database" />
     <MESSAGE value="workspace" />
     <MESSAGE value="open feign for transaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="open feign for transaction" />
+    <MESSAGE value="TRANSACTION HISTORY AUTHORIZATION" />
+    <option name="LAST_COMMIT_MESSAGE" value="TRANSACTION HISTORY AUTHORIZATION" />
   </component>
 </project>

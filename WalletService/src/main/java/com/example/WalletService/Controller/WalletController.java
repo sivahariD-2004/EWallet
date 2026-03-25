@@ -7,7 +7,9 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,12 +27,20 @@ import java.util.Map;
 @RestController
 @RequestMapping("/wallets")
 @Validated
+
 public class WalletController {
 
     private final WalletService walletService;
-
+    @Value("${server.port}")
+    private String port;
     @Autowired
     private UserClient userClient; // ✅ ADD THIS
+
+
+
+    @Autowired
+    private Environment environment;
+
 
     public WalletController(WalletService walletService) {
         this.walletService = walletService;
@@ -72,8 +82,14 @@ public class WalletController {
         List<WalletResponse> response = wallets.stream()
                 .map(WalletResponse::from)
                 .toList();
-
+        System.out.println("Handled by WalletService on port: " + port);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        String port = environment.getProperty("local.server.port");
+        return "Handled by WalletService on port: " + port;
     }
 
     // ✅ Deposit (SECURED)
@@ -85,7 +101,7 @@ public class WalletController {
         Wallet wallet = walletService.getWallet(walletId);
 
         Long loggedInUserId = getLoggedInUserId();
-
+        System.out.println("Handled by WalletService on port: " + port);
 
 
         wallet = walletService.deposit(walletId, request.amount());

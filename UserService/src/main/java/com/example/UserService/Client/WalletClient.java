@@ -1,6 +1,6 @@
 package com.example.UserService.Client;
 
-import com.example.UserService.config.FeignAuthConfig;
+import com.example.UserService.Config.FeignAuthConfig;
 import com.example.UserService.dto.CreateWalletRequest;
 import com.example.UserService.dto.WalletResponse;
 import jakarta.ws.rs.Path;
