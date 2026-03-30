@@ -11,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 @Configuration
-public class FeignAuthConfig {
+public class UserJwtFeignConfig {
 
     @Bean
     public RequestInterceptor bearerForwardingInterceptor() {

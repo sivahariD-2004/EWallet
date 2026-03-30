@@ -46,7 +46,7 @@ public class UserService {
                 new CreateWalletRequest(savedUser.getUserId())
         );
 
-        return userRepository.save(user);
+        return savedUser;
     }
 
     public User loginUser(String email, String rawPassword) {

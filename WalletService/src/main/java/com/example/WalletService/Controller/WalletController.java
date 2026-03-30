@@ -34,7 +34,7 @@ public class WalletController {
     @Value("${server.port}")
     private String port;
     @Autowired
-    private UserClient userClient; // ✅ ADD THIS
+    private UserClient userClient; //  ADD THIS
 
 
 
@@ -51,7 +51,7 @@ public class WalletController {
         String email = auth.getName();
 
         var user = userClient.getUserByEmail(email);
-        return user.getId();   // ✅ FIXED
+        return user.getId();   // FIXED
     }
     // Create a new wallet (NO AUTH CHECK REQUIRED)
     @PostMapping("/create")
@@ -60,7 +60,7 @@ public class WalletController {
         return ResponseEntity.status(HttpStatus.CREATED).body(WalletResponse.from(wallet));
     }
 
-    // ✅ Get wallet by id (SECURED)
+    // Get wallet by id (SECURED)
     @GetMapping("/{walletId}")
     public ResponseEntity<WalletResponse> get(@PathVariable Long walletId) {
         Wallet wallet = walletService.getWallet(walletId);
@@ -143,7 +143,7 @@ public class WalletController {
     }
 
     // ✅ Add money (SECURED)
-    @PostMapping("/add-money")
+    /*@PostMapping("/add-money")
     public Wallet addMoney(
             @RequestParam Long walletId,
             @RequestParam Long bankAccountId,
@@ -159,15 +159,25 @@ public class WalletController {
 
         return walletService.addMoney(walletId, bankAccountId, amount);
     }
+*/
 
+    @PostMapping("/add-money")
+    public Wallet addMoney(
+            @RequestParam Long walletId,
+            @RequestParam Long bankAccountId,
+            @RequestParam BigDecimal amount,
+            @RequestParam String token
+    ) {
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @DeleteMapping("/{walletId}")
-    public ResponseEntity<Void> deleteWallet(@PathVariable Long walletId) {
-        walletService.deleteWalletPermanently(walletId);
-        return ResponseEntity.noContent().build();
+        Wallet wallet = walletService.getWallet(walletId);
+        Long loggedInUserId = getLoggedInUserId();
+
+        if (!wallet.getUserId().equals(loggedInUserId)) {
+            throw new RuntimeException("Forbidden");
+        }
+
+        return walletService.addMoney(walletId, bankAccountId, amount, token);
     }
-
     // --- DTOs ---
 
     public record CreateWalletRequest(

@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -24,19 +25,12 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
-        return http.build();
-    }
+                        .requestMatchers(
+                                "/api/accounts/oauth/**"   // OTP endpoints
+                        ).permitAll()
+                        .anyRequest().permitAll()
+                );
 
-    @Bean
-    JwtDecoder jwtDecoder() {
-        SecretKey key = new SecretKeySpec(
-                "mysecretkeymysecretkeymysecretkey".getBytes(StandardCharsets.UTF_8),
-                "HmacSHA256"
-        );
-        //  IMPORTANT: build() to turn the builder into a JwtDecoder
-        return NimbusJwtDecoder.withSecretKey(key).build();
+        return http.build();
     }
 }

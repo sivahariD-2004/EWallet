@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="TRANSACTION HISTORY AUTHORIZATION">
-      <change beforePath="$PROJECT_DIR$/../APIGateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../APIGateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Controller/BankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Controller/BankController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Config/FeignAuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Config/UserJwtFeignConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eureka-server/eureka-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka-server/eureka-server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/BankClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/BankClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Service/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Service/WalletService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ewalletdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../ewalletdb.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -26,7 +26,7 @@ public class WalletService {
     }
 
 
-    @Transactional
+   /* @Transactional
     public Wallet addMoney(Long walletId, Long bankAccountId, BigDecimal amount) {
 
         validatePositive(amount);
@@ -44,7 +44,32 @@ public class WalletService {
 
         // persist wallet update
         return walletRepository.saveAndFlush(wallet);
-    }
+    }*/
+   @Transactional
+   public Wallet addMoney(
+           Long walletId,
+           Long bankAccountId,
+           BigDecimal amount,
+           String bankAuthToken
+   ) {
+
+       validatePositive(amount);
+
+       Wallet wallet = walletRepository.findByIdForUpdate(walletId)
+               .orElseThrow(() -> new EntityNotFoundException("Wallet not found"));
+
+       ensureActive(wallet);
+
+       // ✅ THIS IS THE FIX: pass BANK token here
+       bankClient.withdraw(
+               bankAccountId,
+               "Bearer " + bankAuthToken,
+               amount
+       );
+
+       wallet.increase(amount);
+       return walletRepository.saveAndFlush(wallet);
+   }
 
         // Creates a new wallet and writes it to the DB immediately
     @Transactional

@@ -1,13 +1,13 @@
 package com.example.WalletService.FeignClient;
 
-import com.example.WalletService.Config.FeignAuthConfig;
+import com.example.WalletService.Config.UserJwtFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "USER-SERVICE",
         path = "/users",
-        configuration = FeignAuthConfig.class   // ✅ IMPORTANT (token forwarding)
+        configuration = UserJwtFeignConfig.class   // ✅ IMPORTANT (token forwarding)
 )
 public interface UserClient {
 
