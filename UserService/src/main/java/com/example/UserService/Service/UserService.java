@@ -17,7 +17,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private final PasswordEncoder passwordEncoder; // ✅ injected
+    private final PasswordEncoder passwordEncoder; //  injected
     private final WalletClient walletClient;
 
 
@@ -33,12 +33,12 @@ public class UserService {
 
 
     public User registerUser(User user) {
-        // ✅ duplicate email check
+        //  duplicate email check
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new DuplicateEmailException("Email already registered");
         }
 
-        // ✅ hash password before save
+        //  hash password before save
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
 

@@ -28,7 +28,7 @@ public class UserController {
         User user = new User();
         user.setEmail(req.email());
         user.setPassword(req.password()); // will be hashed in service
-        user.setPhone(req.phone());       // ✅ keep only existing fields
+        user.setPhone(req.phone());       // keep only existing fields
 
         User saved = userService.registerUser(user);
 
@@ -44,7 +44,7 @@ public class UserController {
             String token = jwtUtil.generateToken(loggedUser.getEmail());
             return ResponseEntity.ok(new TokenResponse(token));
         }
-        // ✅ standardized 401 for bad credentials
+        // standardized 401 for bad credentials
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new ErrorResponse("INVALID_CREDENTIALS", "Email or password is incorrect"));
     }
