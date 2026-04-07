@@ -15,7 +15,7 @@ public class JWTConfig {
     @Bean
     public ReactiveJwtDecoder jwtDecoder() {
 
-        System.out.println("🔐 SECRET USED (Gateway): " + SECRET);
+        System.out.println("SECRET USED (Gateway): " + SECRET);
 
         byte[] keyBytes = SECRET.getBytes();
         SecretKey key = new SecretKeySpec(keyBytes, "HmacSHA256");
@@ -23,16 +23,16 @@ public class JWTConfig {
         NimbusReactiveJwtDecoder decoder = NimbusReactiveJwtDecoder.withSecretKey(key).build();
 
         return token -> {
-            System.out.println("📥 TOKEN RECEIVED IN GATEWAY: " + token);
+            System.out.println(" TOKEN RECEIVED IN GATEWAY: " + token);
 
             return decoder.decode(token)
                     .doOnNext(jwt -> {
-                        System.out.println("✅ JWT VALIDATED");
-                        System.out.println("📦 SUBJECT: " + jwt.getSubject());
-                        System.out.println("⏰ EXPIRES AT: " + jwt.getExpiresAt());
+                        System.out.println("JWT VALIDATED");
+                        System.out.println(" SUBJECT: " + jwt.getSubject());
+                        System.out.println(" EXPIRES AT: " + jwt.getExpiresAt());
                     })
                     .doOnError(error -> {
-                        System.out.println("❌ JWT VALIDATION FAILED: " + error.getMessage());
+                        System.out.println(" JWT VALIDATION FAILED: " + error.getMessage());
                     });
         };
     }

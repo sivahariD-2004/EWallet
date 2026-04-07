@@ -6,6 +6,7 @@ import com.example.BankServer.Modules.BankOtp;
 import com.example.BankServer.Repository.BankAuthTokenRepository;
 import com.example.BankServer.Repository.BankOtpRepository;
 import com.example.BankServer.Service.BankService;
+import com.example.BankServer.Service.OtpMailService;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -20,18 +21,21 @@ public class BankController {
     private final BankService service;
     private final BankOtpRepository otpRepository;
     private final BankAuthTokenRepository tokenRepository;
+    private final OtpMailService otpMailService;
 
     public BankController(
             BankService service,
             BankOtpRepository otpRepository,
-            BankAuthTokenRepository tokenRepository) {
+            BankAuthTokenRepository tokenRepository,
+            OtpMailService otpMailService) {
         this.service = service;
         this.otpRepository = otpRepository;
         this.tokenRepository = tokenRepository;
+        this.otpMailService = otpMailService;
     }
 
-    // ✅ STEP 1: REQUEST OTP (OAuth Authorization Request)
-    @PostMapping("/oauth/request-otp")
+    //  STEP 1: REQUEST OTP (OAuth Authorization Request)
+    /*@PostMapping("/oauth/request-otp")
     public String requestOtp(@RequestParam String email) {
 
         String otp = String.valueOf(100000 + new Random().nextInt(900000));
@@ -45,13 +49,45 @@ public class BankController {
         otpRepository.save(bankOtp);
 
         // Mock email sending
-        System.out.println("✅ OTP sent to email: " + email + " OTP: " + otp);
+        System.out.println(" OTP sent to email: " + email + " OTP: " + otp);
+
+        return "OTP sent to registered email";
+    }*/
+
+    @PostMapping("/oauth/request-otp")
+    public String requestOtp(
+            @RequestParam String email,
+            @RequestParam Long bankAccountId) {
+
+        // 1️ Verify bank account exists
+        BankAccount account = service.getAccount(bankAccountId);
+
+        // 2️ Ensure only account owner can request OTP
+        if (!account.getOwnerEmail().equalsIgnoreCase(email)) {
+            throw new RuntimeException("User does not own this bank account");
+        }
+
+        // 3️ Generate 6-digit OTP
+        String otp = String.valueOf(100000 + new Random().nextInt(900000));
+
+        // 4️ Save OTP in DB (scoped to user + bank account)
+        BankOtp bankOtp = new BankOtp();
+        bankOtp.setUserEmail(email);
+        bankOtp.setBankAccountId(bankAccountId);
+        bankOtp.setOtp(otp);
+        bankOtp.setUsed(false);
+        bankOtp.setExpiresAt(LocalDateTime.now().plusMinutes(2));
+        otpRepository.save(bankOtp);
+
+        // 5️ Send OTP to user's email
+        otpMailService.sendOtp(email, otp);
 
         return "OTP sent to registered email";
     }
 
-    // ✅ STEP 2: VERIFY OTP & ISSUE ACCESS TOKEN
-    @PostMapping("/oauth/verify-otp")
+
+    //  STEP 2: VERIFY OTP & ISSUE ACCESS TOKEN
+   /* @PostMapping("/oauth/verify-otp")
     public String verifyOtp(
             @RequestParam String email,
             @RequestParam String otp) {
@@ -77,9 +113,38 @@ public class BankController {
         tokenRepository.save(token);
 
         return accessToken;
+    }*/
+    @PostMapping("/oauth/verify-otp")
+    public String verifyOtp(
+            @RequestParam String email,
+            @RequestParam Long bankAccountId,
+            @RequestParam String otp) {
+
+        BankOtp bankOtp = otpRepository
+                .findByUserEmailAndBankAccountIdAndOtpAndUsedFalse(
+                        email, bankAccountId, otp)
+                .orElseThrow(() -> new RuntimeException("Invalid OTP"));
+
+        if (bankOtp.getExpiresAt().isBefore(LocalDateTime.now())) {
+            throw new RuntimeException("OTP expired");
+        }
+
+        bankOtp.setUsed(true);
+        otpRepository.save(bankOtp);
+
+        String accessToken = UUID.randomUUID().toString();
+
+        BankAuthToken token = new BankAuthToken();
+        token.setUserEmail(email);
+        token.setBankAccountId(bankAccountId); //  bind token
+        token.setToken(accessToken);
+        token.setExpiresAt(LocalDateTime.now().plusMinutes(5));
+
+        tokenRepository.save(token);
+        return accessToken;
     }
 
-    // ✅ STEP 3: SECURED WITHDRAW (OAuth Resource Access)
+    //  STEP 3: SECURED WITHDRAW (OAuth Resource Access)
     @PutMapping("/{id}/withdraw")
     public BankAccount withdraw(
             @PathVariable Long id,

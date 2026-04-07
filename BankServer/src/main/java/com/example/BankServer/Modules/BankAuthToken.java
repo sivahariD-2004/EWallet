@@ -1,7 +1,5 @@
 package com.example.BankServer.Modules;
 
-
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,21 +11,37 @@ public class BankAuthToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userEmail;
-
+    //  OAuth-style authorization token
+    @Column(nullable = false, unique = true)
     private String token;
 
+    //  User who authorized the operation
+    @Column(nullable = false)
+    private String userEmail;
+
+    //  Bank account for which the token is valid
+    @Column(nullable = false)
+    private Long bankAccountId;
+
+    //  Token expiry time
+    @Column(nullable = false)
     private LocalDateTime expiresAt;
 
-    public BankAuthToken() {
-    }
+    // --- Constructors ---
+    public BankAuthToken() {}
+
+    // --- Getters & Setters ---
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getUserEmail() {
@@ -38,12 +52,12 @@ public class BankAuthToken {
         this.userEmail = userEmail;
     }
 
-    public String getToken() {
-        return token;
+    public Long getBankAccountId() {
+        return bankAccountId;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setBankAccountId(Long bankAccountId) {
+        this.bankAccountId = bankAccountId;
     }
 
     public LocalDateTime getExpiresAt() {

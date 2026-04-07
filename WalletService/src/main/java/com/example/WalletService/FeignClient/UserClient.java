@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(
         name = "USER-SERVICE",
         path = "/users",
-        configuration = UserJwtFeignConfig.class   // ✅ IMPORTANT (token forwarding)
+        configuration = UserJwtFeignConfig.class   //  IMPORTANT (token forwarding)
 )
 public interface UserClient {
 
-    // ❌ Old method (optional to keep)
+    //  Old method (optional to keep)
     @GetMapping("/{userId}")
     UserResponse getUser(@PathVariable("userId") Long userId);
 
-    // ✅ ADD THIS METHOD (VERY IMPORTANT)
+    // ADD THIS METHOD (VERY IMPORTANT)
     @GetMapping("/email/{email}")
     UserResponse getUserByEmail(@PathVariable("email") String email);
 

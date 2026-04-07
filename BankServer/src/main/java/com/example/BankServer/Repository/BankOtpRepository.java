@@ -7,5 +7,9 @@ import java.util.Optional;
 
 public interface BankOtpRepository extends JpaRepository<BankOtp, Long> {
 
-    Optional<BankOtp> findByUserEmailAndOtpAndUsedFalse(String userEmail, String otp);
+    Optional<BankOtp> findByUserEmailAndBankAccountIdAndOtpAndUsedFalse(
+            String userEmail,
+            Long bankAccountId,
+            String otp
+    );
 }

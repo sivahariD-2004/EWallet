@@ -7,18 +7,18 @@ import java.math.BigDecimal;
 @FeignClient(name = "BANK-SERVICE")
 public interface BankClient {
 
-    // ✅ Step 1: Request OTP
+    // Step 1: Request OTP
     @PostMapping("/api/accounts/oauth/request-otp")
     void requestOtp(@RequestParam String email);
 
-    // ✅ Step 2: Verify OTP & get authorization token
+    //  Step 2: Verify OTP & get authorization token
     @PostMapping("/api/accounts/oauth/verify-otp")
     String verifyOtp(
             @RequestParam String email,
             @RequestParam String otp
     );
 
-    // ✅ Step 3: Withdraw using authorization token
+    //  Step 3: Withdraw using authorization token
     @PutMapping("/api/accounts/{id}/withdraw")
     void withdraw(
             @PathVariable("id") Long accountId,

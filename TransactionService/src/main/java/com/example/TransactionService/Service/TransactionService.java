@@ -31,23 +31,23 @@ public class TransactionService {
 
         try {
 
-            // 1️⃣ Get logged-in user from JWT
+            // 1 Get logged-in user from JWT
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String email = auth.getName();
 
-            // 2️⃣ Get userId from UserService
+            // 2️ Get userId from UserService
             var user = userClient.getUserByEmail(email);
             Long loggedInUserId = user.id;
 
-            // 3️⃣ Get sender wallet details
+            // 3 Get sender wallet details
             var senderWallet = walletClient.getWallet(transaction.getSenderWalletId());
 
-            // 4️⃣ Authorization check (VERY IMPORTANT)
+            // 4 Authorization check (VERY IMPORTANT)
             if (!senderWallet.userId.equals(loggedInUserId)) {
                 throw new RuntimeException("Forbidden: You cannot access this wallet");
             }
 
-            // 5️⃣ Basic validations
+            // 5️ Basic validations
             if (transaction.getSenderWalletId().equals(transaction.getReceiverWalletId())) {
                 throw new RuntimeException("Sender and Receiver wallet cannot be the same");
             }
@@ -56,7 +56,7 @@ public class TransactionService {
                 throw new RuntimeException("Transfer amount must be greater than zero");
             }
 
-            // 6️⃣ Withdraw from sender
+            // 6️ Withdraw from sender
             walletClient.withdraw(
                     transaction.getSenderWalletId(),
                     new WalletClient.AmountRequest(transaction.getAmount())
@@ -64,7 +64,7 @@ public class TransactionService {
 
             amountWithdrawn = true;
 
-            // 7️⃣ Deposit to receiver
+            // 7 Deposit to receiver
             walletClient.deposit(
                     transaction.getReceiverWalletId(),
                     new WalletClient.AmountRequest(transaction.getAmount())
@@ -74,7 +74,7 @@ public class TransactionService {
 
         } catch (Exception e) {
 
-            // 8️⃣ Compensation (Refund logic)
+            // 8 Compensation (Refund logic)
             if (amountWithdrawn) {
                 try {
                     walletClient.deposit(
@@ -94,27 +94,27 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    // 📜 Transaction History
+    // Transaction History
 
     public List<Transaction> getTransactionHistory(Long walletId) {
 
-        // 1️⃣ Get logged-in user from JWT
+        // 1 Get logged-in user from JWT
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
 
-        // 2️⃣ Get userId from UserService
+        // 2️ Get userId from UserService
         var user = userClient.getUserByEmail(email);
         Long loggedInUserId = user.id;
 
-        // 3️⃣ Get wallet details
+        // 3️ Get wallet details
         var wallet = walletClient.getWallet(walletId);
 
-        // 4️⃣ Authorization check
+        // 4️ Authorization check
         if (!wallet.userId.equals(loggedInUserId)) {
             throw new ForbiddenException("You cannot view this wallet's transactions");
         }
 
-        // 5️⃣ Fetch transactions
+        // 5️ Fetch transactions
         return transactionRepository
                 .findBySenderWalletIdOrReceiverWalletId(walletId, walletId);
     }

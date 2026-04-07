@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bc8dec2-7217-469b-ba2a-38bc0a9bc72d" name="Changes" comment="TRANSACTION HISTORY AUTHORIZATION">
+      <change beforePath="$PROJECT_DIR$/../APIGateway/src/main/java/com/example/APIGateway/config1/JWTConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../APIGateway/src/main/java/com/example/APIGateway/config1/JWTConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Controller/BankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Controller/BankController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Modules/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Modules/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Modules/BankAuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Modules/BankAuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Modules/BankOtp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Modules/BankOtp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Repository/BankOtpRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/java/com/example/BankServer/Repository/BankOtpRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../BankServer/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Client/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Client/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Client/WalletClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Client/WalletClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/Service/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/TransactionService/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Security/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/src/main/java/com/example/UserService/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Config/FeignAuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Config/UserJwtFeignConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/Controller/WalletController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/BankClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/BankClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WalletService/src/main/java/com/example/WalletService/FeignClient/UserClient.java" afterDir="false" />
@@ -68,7 +78,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;security&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/yuvanya.thangaraj/IdeaProjects/EWalletDB/TransactionService&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,

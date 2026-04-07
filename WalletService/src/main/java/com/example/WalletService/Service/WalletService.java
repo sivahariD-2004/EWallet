@@ -60,7 +60,7 @@ public class WalletService {
 
        ensureActive(wallet);
 
-       // ✅ THIS IS THE FIX: pass BANK token here
+       // THIS IS THE FIX: pass BANK token here
        bankClient.withdraw(
                bankAccountId,
                "Bearer " + bankAuthToken,

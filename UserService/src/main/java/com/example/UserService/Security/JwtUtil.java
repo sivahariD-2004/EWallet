@@ -13,7 +13,7 @@ public class JwtUtil {
     private final String SECRET = "mysecretkeymysecretkeymysecretkey";
 
     private Key getSigningKey(){
-        System.out.println("🔐 SECRET USED (UserService): " + SECRET);
+        System.out.println(" SECRET USED (UserService): " + SECRET);
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
@@ -26,7 +26,7 @@ public class JwtUtil {
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
 
-        System.out.println("🧾 GENERATED TOKEN: " + token);
+        System.out.println(" GENERATED TOKEN: " + token);
 
         return token;
     }

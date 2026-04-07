@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "USER-SERVICE",
-        configuration = FeignAuthConfig.class   // ✅ IMPORTANT (token forwarding)
+        configuration = FeignAuthConfig.class   // IMPORTANT (token forwarding)
 )
 public interface UserClient {
 

@@ -18,7 +18,7 @@ public interface WalletClient {
     Object deposit(@PathVariable("walletId") Long walletId,
                    @RequestBody AmountRequest request);
 
-    // ✅ ADD THIS METHOD
+    //  ADD THIS METHOD
     @GetMapping("/wallets/{walletId}")
     WalletResponse getWallet(@PathVariable("walletId") Long walletId);
 
@@ -30,7 +30,7 @@ public interface WalletClient {
         }
     }
 
-    // ✅ ADD THIS DTO
+    // ADD THIS DTO
     class WalletResponse {
         public Long walletId;
         public Long userId;

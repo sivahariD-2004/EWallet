@@ -23,18 +23,28 @@ public class BankAccount {
     @Column(nullable = false)
     private String accountType;
 
-    // Constructors
-    public BankAccount() {
-    }
+    //  NEW: Owner of the bank account (used for OTP + authorization)
+    @Column(name = "owner_email", nullable = false)
+    private String ownerEmail;
 
-    public BankAccount(String accountNumber, String accountHolderName, BigDecimal balance, String accountType) {
+    // --- Constructors ---
+    public BankAccount() {}
+
+    public BankAccount(
+            String accountNumber,
+            String accountHolderName,
+            BigDecimal balance,
+            String accountType,
+            String ownerEmail) {
         this.accountNumber = accountNumber;
         this.accountHolderName = accountHolderName;
         this.balance = balance;
         this.accountType = accountType;
+        this.ownerEmail = ownerEmail;
     }
 
-    // Getters and Setters
+    // --- Getters & Setters ---
+
     public Long getId() {
         return id;
     }
@@ -69,5 +79,14 @@ public class BankAccount {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    //  REQUIRED for OTP ownership enforcement
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
     }
 }
